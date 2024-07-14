@@ -1,10 +1,8 @@
 from urllib.parse import urlencode
 from django.contrib import admin, messages
-from django.db.models.query import QuerySet
 from django.db.models import Count
 from django.urls import reverse
 from django.utils.html import format_html
-from typing import Any
 from . import models
 
 
@@ -23,7 +21,7 @@ class InventoryFilter(admin.SimpleListFilter):
 
 
 # adding new columns
-@admin.register(models.Collection)
+@admin.register(models.Collection1)
 class CollectionAdmin(admin.ModelAdmin):
     list_display = ["title", "products_count"]
     search_fields = ["title"]
