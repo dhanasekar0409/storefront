@@ -5,7 +5,7 @@ from rest_framework_nested import routers
 
 # Parent Router
 router = DefaultRouter()
-router.register("products", views.ProductViewSet)
+router.register("products", views.ProductViewSet, basename="products")
 router.register("collections", views.Collection1ViewSet)
 
 # Child Router
