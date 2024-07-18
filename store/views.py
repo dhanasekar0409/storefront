@@ -3,8 +3,8 @@ from django.shortcuts import get_object_or_404
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
-from .models import Collection1, OrderItem, Product
-from .serializers import Collection1Serializer, ProductSerializer
+from .models import Collection1, OrderItem, Product, Review
+from .serializers import Collection1Serializer, ProductSerializer, ReviewSerializer
 from django.db.models import Count
 
 
@@ -41,3 +41,8 @@ class Collection1ViewSet(ModelViewSet):
             )
         collection.delete()
         return super().destroy(request, *args, **kwargs)
+
+
+class ReviewViewSet(ModelViewSet):
+    queryset = Review.objects.all()
+    serializer_class = ReviewSerializer
