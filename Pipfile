@@ -10,6 +10,7 @@ mysqlclient = "*"
 djangorestframework = "*"
 pygments = "*"
 drf-nested-routers = "*"
+django-filter = "*"
 
 [dev-packages]
 
