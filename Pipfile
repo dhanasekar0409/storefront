@@ -5,17 +5,16 @@ name = "pypi"
 
 [packages]
 django = "*"
-django-debug-toolbar = "*"
 mysqlclient = "*"
 djangorestframework = "*"
-pygments = "*"
-drf-nested-routers = "*"
-django-filter = "*"
 djoser = "*"
-djangorestframework-simplejwt = "*"
+django-filter = "*"
 pillow = "*"
+djangorestframework-simplejwt = "*"
+pygments = "*"
+django-debug-toolbar = "*"
 
 [dev-packages]
 
 [requires]
-python_version = "3.12.4"
+python_version = "3.12"
