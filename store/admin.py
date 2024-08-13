@@ -49,12 +49,23 @@ class CustomerAdmin(admin.ModelAdmin):
     search_fields = ["first_name__istartswith", "last_name__istartswith"]
 
 
+class ProductImageInline(admin.TabularInline):
+    model = models.ProductImage
+    readonly_fields = ["thumbnail"]
+
+    def thumbnail(self, instance):
+        if instance.image.name != "":
+            return format_html(f'<img src="{instance.image.url}" class="thumbnail"/>')
+        return ""
+
+
 @admin.register(models.Product)
 class ProductAdmin(admin.ModelAdmin):
     search_fields = ["title"]
     autocomplete_fields = ["collection"]
     prepopulated_fields = {"slug": ["title"]}
     actions = ["clear_inventory"]
+    inlines = [ProductImageInline]
     list_display = ["title", "unit_price", "inventory_status", "collection_title"]
     list_editable = ["unit_price"]
     ordering = ["title"]
@@ -80,6 +91,9 @@ class ProductAdmin(admin.ModelAdmin):
             f"{updated_count} products inventory were successfully cleared",
             messages.ERROR,
         )
+
+    class Media:
+        css = {"all": ["store/styles.css"]}
 
 
 class OrderItemInline(admin.TabularInline):

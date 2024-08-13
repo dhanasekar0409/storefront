@@ -42,7 +42,7 @@ from .serializers import (
 
 
 class ProductViewSet(ModelViewSet):
-    queryset = Product.objects.prefetch_related('images').all()
+    queryset = Product.objects.prefetch_related("images").all()
     serializer_class = ProductSerializer
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
     filterset_class = ProductFilter
@@ -187,10 +187,10 @@ class OrderViewSet(ModelViewSet):
 
 
 class ProductImageViewSet(ModelViewSet):
-   serializer_class=ProductImageSerializer
+    serializer_class = ProductImageSerializer
 
-   def get_serializer_context(self):
-      return {'product_id':self.kwargs['product_pk']}
+    def get_serializer_context(self):
+        return {"product_id": self.kwargs["product_pk"]}
 
-   def get_queryset(self):
-      return ProductImage.objects.filter(product_id=self.kwargs['product_pk'])
+    def get_queryset(self):
+        return ProductImage.objects.filter(product_id=self.kwargs["product_pk"])
