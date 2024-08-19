@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "corsheaders",
     "rest_framework",
     "djoser",
+    "silk",
     "debug_toolbar",
     "playground",
     "store",
@@ -61,6 +62,9 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
+# if DEBUG:
+#     MIDDLEWARE += ["silk.middleware.SilkyMiddleware"]
 
 INTERNAL_IPS = [
     # ...
@@ -180,7 +184,7 @@ EMAIL_PORT = 2525
 DEFAULT_FROM_EMAIL = "dhanaromanreigns004@gmail.com"
 
 
-ADMINS = [("Dhana", "dhanaromanreigns004@gmail.com")]
+ADMINS = [("Dhana", "dhanasekarn0409@gmail.com")]
 
 
 CELERY_BROKER_URL = "redis://localhost:6379/1"
@@ -189,5 +193,16 @@ CELERY_BEAT_SCHEDULE = {
         "task": "playground/tasks.notify_customers",
         "schedule": 5,
         "args": ["Hello World"],
+    }
+}
+
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://localhost:6379/2",
+        "TIMEOUT": 10 * 60,
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        },
     }
 }

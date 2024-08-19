@@ -101,7 +101,6 @@ class CartViewSet(
 
 
 class CartItemViewSet(ModelViewSet):
-    serializer_class = CartItemSerializer
     http_method_names = ["get", "post", "patch", "delete"]
 
     def get_serializer_context(self):
