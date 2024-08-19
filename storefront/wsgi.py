@@ -8,9 +8,10 @@ https://docs.djangoproject.com/en/3.2/howto/deployment/wsgi/
 """
 
 import os
-
+from waitress import serve
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'storefront.settings')
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "storefront.settings.dev")
 
 application = get_wsgi_application()
+# waitress-serve --listen=127.0.0.1:8000 myapp.wsgi:application
